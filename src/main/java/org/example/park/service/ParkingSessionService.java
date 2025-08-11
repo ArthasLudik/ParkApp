@@ -34,7 +34,7 @@ public class ParkingSessionService {
             throw new IllegalStateException("Место занято");
         }
 
-        Vehicle vehicle = vehicleRepository.findById(dto.getVehicle().getId()).orElseThrow(()
+        Vehicle vehicle = vehicleRepository.findById(dto.getVehicleId()).orElseThrow(()
         -> new EntityNotFoundException("Нет машины с таким Id"));
 
         ParkingSession session = new ParkingSession();
@@ -48,6 +48,7 @@ public class ParkingSessionService {
         return new ParkingSessionResponseDto(
                 savedSession.getId(),
                 savedSession.getEntryTime(),
+                savedSession.getExitTime(),
                 spot.getId(),
                 vehicle.getId(),
                 session.getTotalCost()
@@ -77,6 +78,7 @@ public class ParkingSessionService {
         }
 
         session.setExitTime(LocalDateTime.now());
+        session.calculateCost();
 
         ParkingSpot spot = session.getSpot();
         spot.setOccupied(false);
@@ -86,7 +88,8 @@ public class ParkingSessionService {
         return new ParkingSessionResponseDto(
                 save.getId(),
                 save.getEntryTime(),
-                spot.getId(),
+                save.getExitTime(),
+                save.getSpot().getId(),
                 save.getVehicle().getId(),
                 save.getTotalCost()
         );
@@ -110,6 +113,7 @@ public class ParkingSessionService {
         return new ParkingSessionResponseDto(
                 session.getId(),
                 session.getEntryTime(),
+                session.getExitTime(),
                 session.getSpot().getId(),
                 session.getVehicle().getId(),
                 session.getTotalCost()

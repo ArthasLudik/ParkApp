@@ -23,7 +23,7 @@ public class ParkingSession {
     @Column(name = "exit_time")
     private LocalDateTime exitTime;
 
-    @Column(name = "total_cost", precision = 10, scale = 2)
+    @Column(name = "total_cost")
     private BigDecimal totalCost;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,12 +39,11 @@ public class ParkingSession {
         this.entryTime = LocalDateTime.now();
     }
 
-    @PreUpdate
     public void calculateCost() {
         if (exitTime != null && entryTime != null) {
-            long hours = Duration.between(entryTime, exitTime).toHours();
-            hours = hours == 0 ? 1 : hours;
-            this.totalCost = spot.getHourlyRate().multiply(BigDecimal.valueOf(hours));
+            long minutes = Duration.between(entryTime, exitTime).toMinutes();
+            minutes = minutes == 0 ? 1 : minutes;
+            this.totalCost = spot.getHourlyRate().multiply(BigDecimal.valueOf(minutes));
         }
     }
 }

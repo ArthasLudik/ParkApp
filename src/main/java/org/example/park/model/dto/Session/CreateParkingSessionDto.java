@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.park.model.entity.Vehicle;
+
 
 
 import java.time.LocalDateTime;
@@ -20,7 +20,7 @@ public class CreateParkingSessionDto {
     private Long id;
 
     @NotNull
-    private Vehicle vehicle;
+    private Long vehicleId;
 
     @FutureOrPresent
     private LocalDateTime entryTime;

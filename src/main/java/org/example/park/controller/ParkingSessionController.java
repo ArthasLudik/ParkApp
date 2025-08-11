@@ -25,8 +25,8 @@ import java.util.List;
 public class ParkingSessionController {
     private final ParkingSessionService parkingSessionService;
 
-    @PostMapping
-    public ResponseEntity<ParkingSessionResponseDto> post(@RequestBody @Valid CreateParkingSessionDto createDto) {
+    @PostMapping("/create")
+    public ResponseEntity<ParkingSessionResponseDto> createSession(@RequestBody CreateParkingSessionDto createDto) {
         ParkingSessionResponseDto responseDto = parkingSessionService.createSession(createDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
@@ -44,13 +44,13 @@ public class ParkingSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteSessionById(@PathVariable Long id) {
         parkingSessionService.deleteSessionById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping
-    public ResponseEntity<ParkingSessionResponseDto> put(@RequestBody CompleteParkingSessionDto completeDto) {
+    @PutMapping("/complete")
+    public ResponseEntity<ParkingSessionResponseDto> completeSession(@RequestBody CompleteParkingSessionDto completeDto) {
         ParkingSessionResponseDto responseDto = parkingSessionService.completeParkingSession(completeDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }

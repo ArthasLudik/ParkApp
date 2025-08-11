@@ -29,7 +29,7 @@ public class ParkingSpotController {
 
     @PostMapping
     public ResponseEntity<ParkingSpotResponseDto> createParkingSpot(
-            @RequestBody @Valid CreateParkingSpotDto createDto) {
+            @RequestBody CreateParkingSpotDto createDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpotService.createSpot(createDto));
     }
 
