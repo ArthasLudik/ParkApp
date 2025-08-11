@@ -2,9 +2,9 @@ package org.example.park.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.park.model.dto.CreateParkingSpotDto;
-import org.example.park.model.dto.ParkingSpotResponseDto;
-import org.example.park.model.dto.UpdateParkingSpotDto;
+import org.example.park.model.dto.Spot.CreateParkingSpotDto;
+import org.example.park.model.dto.Spot.ParkingSpotResponseDto;
+import org.example.park.model.dto.Spot.UpdateParkingSpotDto;
 import org.example.park.service.ParkingSpotService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

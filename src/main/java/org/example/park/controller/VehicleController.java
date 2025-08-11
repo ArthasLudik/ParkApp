@@ -1,8 +1,8 @@
 package org.example.park.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.park.model.dto.CreateVehicleDto;
-import org.example.park.model.dto.VehicleResponseDto;
+import org.example.park.model.dto.Vehicle.CreateVehicleDto;
+import org.example.park.model.dto.Vehicle.VehicleResponseDto;
 import org.example.park.service.VehicleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

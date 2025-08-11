@@ -1,4 +1,4 @@
-package org.example.park.model.dto;
+package org.example.park.model.dto.Session;
 
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;

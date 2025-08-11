@@ -2,8 +2,8 @@ package org.example.park.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.example.park.model.dto.CreateVehicleDto;
-import org.example.park.model.dto.VehicleResponseDto;
+import org.example.park.model.dto.Vehicle.CreateVehicleDto;
+import org.example.park.model.dto.Vehicle.VehicleResponseDto;
 import org.example.park.model.entity.Vehicle;
 import org.example.park.repository.VehicleRepository;
 import org.springframework.stereotype.Service;

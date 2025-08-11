@@ -1,8 +1,8 @@
 package org.example.park.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.park.model.dto.CreateUserDto;
-import org.example.park.model.dto.UserResponseDto;
+import org.example.park.model.dto.User.CreateUserDto;
+import org.example.park.model.dto.User.UserResponseDto;
 import org.example.park.model.entity.User;
 import org.example.park.service.UserService;
 import org.springframework.http.ResponseEntity;

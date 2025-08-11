@@ -1,4 +1,4 @@
-package org.example.park.model.dto;
+package org.example.park.model.dto.Spot;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;

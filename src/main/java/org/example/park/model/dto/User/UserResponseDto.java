@@ -1,4 +1,4 @@
-package org.example.park.model.dto;
+package org.example.park.model.dto.User;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
