@@ -1,6 +1,7 @@
 package org.example.park.model.dto.Session;
 
 import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ public class CreateParkingSessionDto {
     @NotNull
     private Long id;
 
-    @NotNull
+    @NotBlank
     private Long vehicleId;
 
     @FutureOrPresent
