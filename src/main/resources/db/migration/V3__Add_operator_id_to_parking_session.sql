@@ -1,0 +1,1 @@
+ALTER TABLE parking_session ADD COLUMN operator_id BIGINT NOT NULL DEFAULT 1;

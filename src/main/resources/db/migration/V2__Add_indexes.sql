@@ -1,3 +1,5 @@
-CREATE INDEX idx_parking_spot_occupied ON parking_spot(is_occupied) WHERE NOT is_occupied;
+CREATE INDEX idx_parking_session_vehicle_id ON parking_session(vehicle_id);
 
-CREATE INDEX idx_parking_session_active ON parking_session(vehicle_id) WHERE exit_time IS NULL;
+
+CREATE INDEX idx_parking_session_spot_id ON parking_session(spot_id);
+

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.park.model.dto.enums.VehicleType;
 
 @Getter
 @Setter
@@ -19,4 +20,7 @@ public class VehicleResponseDto {
 
     @NotBlank
     private String licensePlate;
+
+    @NotNull
+    private VehicleType type;
 }

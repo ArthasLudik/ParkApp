@@ -3,6 +3,7 @@ package org.example.park.model.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.park.model.dto.enums.VehicleType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,4 @@ public class Vehicle {
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private List<ParkingSession> sessions = new ArrayList<>();
 
-    public enum VehicleType {
-        CAR, MOTORCYCLE, TRUCK, ElectroCar
-    }
 }

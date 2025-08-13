@@ -3,6 +3,7 @@ package org.example.park.model.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.park.model.dto.enums.SpotType;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -32,8 +33,4 @@ public class ParkingSpot {
 
     @OneToMany(mappedBy = "spot", cascade = CascadeType.ALL)
     private List<ParkingSession> sessions = new ArrayList<>();
-
-    public enum SpotType {
-        STANDARD, DISABLED, ELECTRIC, TRUCK
-    }
 }

@@ -1,6 +1,8 @@
 package org.example.park.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +35,11 @@ public class ParkingSession {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "spot_id", nullable = false)
     private ParkingSpot spot;
+
+    @NotNull
+    @Positive
+    @Column(name = "operator_id", nullable = false)
+    private Long operatorId;
 
     @PrePersist
     public void setEntryTime() {

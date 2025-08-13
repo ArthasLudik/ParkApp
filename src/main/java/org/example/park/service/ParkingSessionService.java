@@ -40,6 +40,7 @@ public class ParkingSessionService {
         ParkingSession session = new ParkingSession();
         session.setSpot(spot);
         session.setVehicle(vehicle);
+        session.setOperatorId(dto.getOperatorId());
 
         spot.setOccupied(true);
 
@@ -51,10 +52,12 @@ public class ParkingSessionService {
                 savedSession.getExitTime(),
                 spot.getId(),
                 vehicle.getId(),
+                savedSession.getOperatorId(),
                 session.getTotalCost()
         );
     }
 
+    @Transactional
     public void deleteSessionById(Long id) {
         ParkingSession session = parkingSessionRepository.findById(id)
                         .orElseThrow(() -> new EntityNotFoundException("Сессия с таким id не найдена"));
@@ -91,6 +94,7 @@ public class ParkingSessionService {
                 save.getExitTime(),
                 save.getSpot().getId(),
                 save.getVehicle().getId(),
+                save.getOperatorId(),
                 save.getTotalCost()
         );
     }
@@ -116,6 +120,7 @@ public class ParkingSessionService {
                 session.getExitTime(),
                 session.getSpot().getId(),
                 session.getVehicle().getId(),
+                session.getOperatorId(),
                 session.getTotalCost()
         );
     }

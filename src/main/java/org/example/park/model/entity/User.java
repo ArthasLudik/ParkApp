@@ -3,6 +3,7 @@ package org.example.park.model.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.park.model.dto.enums.UserRole;
 
 @Entity
 @Table(name = "app_user")
@@ -21,9 +22,6 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private Role role;
+    private UserRole role;
 
-    public enum Role {
-        ADMIN, OPERATOR
-    }
 }

@@ -5,14 +5,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.park.model.entity.User;
+import org.example.park.model.dto.enums.UserRole;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class CreateUserDto {
-   @NotNull
-    private Long id;
 
     @NotBlank
     private String username;
@@ -21,5 +19,5 @@ public class CreateUserDto {
     private String passwordHash;
 
     @NotNull
-    private User.Role role;
+    private UserRole role;
 }

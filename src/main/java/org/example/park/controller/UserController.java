@@ -1,9 +1,10 @@
 package org.example.park.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.park.model.dto.User.CreateUserDto;
 import org.example.park.model.dto.User.UserResponseDto;
-import org.example.park.model.entity.User;
+import org.example.park.model.dto.enums.UserRole;
 import org.example.park.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +23,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserResponseDto> createNewUser(@RequestBody CreateUserDto createUserDto) {
+    public ResponseEntity<UserResponseDto> createNewUser(@RequestBody @Valid CreateUserDto createUserDto) {
         return ResponseEntity.ok(userService.createNewUser(createUserDto));
     }
 
@@ -34,12 +35,17 @@ public class UserController {
 
 
     @PatchMapping("/{id}")
-    public ResponseEntity<UserResponseDto> updateUserRole(@PathVariable Long id, @RequestBody User.Role role) {
+    public ResponseEntity<UserResponseDto> updateUserRole(@PathVariable Long id, @RequestBody UserRole role) {
         return ResponseEntity.ok(userService.updateUserRoleById(id, role));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDto> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<java.util.List<UserResponseDto>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 }
