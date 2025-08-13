@@ -7,6 +7,7 @@ import org.example.park.model.dto.Vehicle.VehicleResponseDto;
 import org.example.park.model.entity.Vehicle;
 import org.example.park.repository.VehicleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class VehicleService {
     private final VehicleRepository vehicleRepository;
 
+    @Transactional
     public VehicleResponseDto createNewVehicle(CreateVehicleDto dto) {
         Vehicle vehicle = new Vehicle();
 
@@ -29,16 +31,19 @@ public class VehicleService {
         return new VehicleResponseDto(
                 savedVehicle.getId(),
                 savedVehicle.getModel(),
-                savedVehicle.getLicensePlate()
+                savedVehicle.getLicensePlate(),
+                savedVehicle.getType()
         );
     }
 
+    @Transactional(readOnly = true)
     public List<VehicleResponseDto> getAllVehicles() {
         return vehicleRepository.findAll().stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public void deleteVehicleById(Long id) {
         Vehicle vehicle = vehicleRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Нет машины с таким id"));
@@ -50,7 +55,8 @@ public class VehicleService {
         return new VehicleResponseDto(
                 vehicle.getId(),
                 vehicle.getModel(),
-                vehicle.getLicensePlate()
+                vehicle.getLicensePlate(),
+                vehicle.getType()
         );
     }
 

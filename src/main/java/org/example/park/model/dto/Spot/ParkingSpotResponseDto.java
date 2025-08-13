@@ -5,17 +5,20 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.park.model.entity.ParkingSpot;
+import org.example.park.model.dto.enums.SpotType;
 import java.math.BigDecimal;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class ParkingSpotResponseDto {
+
     @NotNull
+    @Positive
     private Long spotId;
 
     @JsonProperty("number")
@@ -24,7 +27,7 @@ public class ParkingSpotResponseDto {
 
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private ParkingSpot.SpotType type;
+    private SpotType type;
 
     @NotBlank
     private boolean isOccupied;

@@ -3,14 +3,14 @@ package org.example.park.model.dto.Vehicle;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.park.model.entity.Vehicle;
+import org.example.park.model.dto.enums.VehicleType;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@NoArgsConstructor
 public class CreateVehicleDto {
 
     @NotNull
@@ -26,5 +26,5 @@ public class CreateVehicleDto {
     private String color;
 
     @NotNull
-    private Vehicle.VehicleType vehicleType;
+    private VehicleType vehicleType;
 }

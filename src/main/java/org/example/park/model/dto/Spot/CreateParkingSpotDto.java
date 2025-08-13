@@ -2,11 +2,12 @@ package org.example.park.model.dto.Spot;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.park.model.entity.ParkingSpot;
+import org.example.park.model.dto.enums.SpotType;
 
 import java.math.BigDecimal;
 
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 public class CreateParkingSpotDto {
 
     @NotNull
+    @Positive
     private Long id;
 
     @NotNull
@@ -23,11 +25,10 @@ public class CreateParkingSpotDto {
     private String number;
 
     @NotNull
-    private ParkingSpot.SpotType spotType;
+    private SpotType spotType;
 
     @NotNull
     private boolean isOccupied;
-
 
     @NotNull
     @DecimalMin("1.0")

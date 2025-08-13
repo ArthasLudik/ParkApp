@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.example.park.model.dto.User.CreateUserDto;
 import org.example.park.model.dto.User.UserResponseDto;
+import org.example.park.model.dto.enums.UserRole;
 import org.example.park.model.entity.User;
 import org.example.park.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -19,15 +20,14 @@ public class UserService {
 
     @Transactional
     public UserResponseDto createNewUser(CreateUserDto dto) {
-        User user = userRepository.findById(dto.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Такого пользователя не существует"));
-
+        User user = new User();
         user.setUsername(dto.getUsername());
         user.setPasswordHash(dto.getPasswordHash());
         user.setRole(dto.getRole());
 
         User savedUser = userRepository.save(user);
         return new UserResponseDto(
+                savedUser.getId(),
                 savedUser.getUsername(),
                 savedUser.getRole()
         );
@@ -42,10 +42,11 @@ public class UserService {
     }
 
     @Transactional
-    public UserResponseDto updateUserRoleById(Long id, User.Role role) {
+    public UserResponseDto updateUserRoleById(Long id, UserRole role) {
         User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Пользователь с таким id не найден"));
         user.setRole(role);
         return new UserResponseDto(
+                user.getId(),
                 user.getUsername(),
                 user.getRole()
         );
@@ -56,6 +57,7 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Пользователь не найден"));
         return new UserResponseDto(
+                user.getId(),
                 user.getUsername(),
                 user.getRole()
         );
@@ -70,6 +72,7 @@ public class UserService {
 
     private UserResponseDto convertToDto(User user) {
         return new UserResponseDto(
+                user.getId(),
                 user.getUsername(),
                 user.getRole()
         );

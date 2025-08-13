@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,7 +23,7 @@ public class VehicleController {
     private final VehicleService vehicleService;
 
     @PostMapping
-    public ResponseEntity<VehicleResponseDto> createNewVehicle(@RequestBody CreateVehicleDto dto) {
+    public ResponseEntity<VehicleResponseDto> createNewVehicle(@RequestBody @Valid CreateVehicleDto dto) {
         return ResponseEntity.ok(vehicleService.createNewVehicle(dto));
     }
 
@@ -27,5 +31,10 @@ public class VehicleController {
     public ResponseEntity<Void> deleteVehicleById(@PathVariable Long id) {
         vehicleService.deleteVehicleById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<VehicleResponseDto>> getAllVehicles() {
+        return ResponseEntity.ok(vehicleService.getAllVehicles());
     }
 }

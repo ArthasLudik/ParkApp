@@ -25,8 +25,8 @@ import java.util.List;
 public class ParkingSessionController {
     private final ParkingSessionService parkingSessionService;
 
-    @PostMapping("/create")
-    public ResponseEntity<ParkingSessionResponseDto> createSession(@RequestBody CreateParkingSessionDto createDto) {
+    @PostMapping
+    public ResponseEntity<ParkingSessionResponseDto> createSession(@RequestBody @Valid CreateParkingSessionDto createDto) {
         ParkingSessionResponseDto responseDto = parkingSessionService.createSession(createDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
@@ -49,8 +49,8 @@ public class ParkingSessionController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/complete")
-    public ResponseEntity<ParkingSessionResponseDto> completeSession(@RequestBody CompleteParkingSessionDto completeDto) {
+    @PutMapping
+    public ResponseEntity<ParkingSessionResponseDto> completeSession(@RequestBody @Valid CompleteParkingSessionDto completeDto) {
         ParkingSessionResponseDto responseDto = parkingSessionService.completeParkingSession(completeDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }

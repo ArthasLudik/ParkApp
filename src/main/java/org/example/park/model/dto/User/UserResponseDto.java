@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.park.model.entity.User;
+import org.example.park.model.dto.enums.UserRole;
 
 @Getter
 @Setter
@@ -12,8 +12,11 @@ import org.example.park.model.entity.User;
 public class UserResponseDto {
 
     @NotNull
+    private Long id;
+
+    @NotNull
     private String name;
 
     @NotNull
-    private User.Role role;
+    private UserRole role;
 }
